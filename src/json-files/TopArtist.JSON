@@ -1,5 +1,3 @@
-//https://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=disco&api_key=c0998634535f7b4832a31b40fe75aee9&format=json
-
 {
     "topartists": {
       "artist": [
