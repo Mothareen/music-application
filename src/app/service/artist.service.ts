@@ -11,7 +11,6 @@ export class ArtistService {
   constructor(private http: HttpClient) { }
 
   getTopArtist(){
-    const url = `${MusicAppApiPath.TopArtists}?so=${so}&dn=${dn}`;
-    return this.http.get<any>(`${url}`).pipe(map((data) => data));
+    return this.http.get<any>(`${MusicAppApiPath.TopArtists}`).pipe(map((data) => data));
   }
 }

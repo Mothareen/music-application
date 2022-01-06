@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  MusictApiUrl: 'https://www.last.fm/api',
+  MusictApiUrl: 'http://ws.audioscrobbler.com',
   MusicUrl: 'https://www.last.fm/de',
   Api_key : 'c0998634535f7b4832a31b40fe75aee9'
 };
