@@ -1,5 +1,29 @@
 
-.example-card {
+.mat-card {
     max-width: 320px;
-    margin: 4px
+    margin: 4px;
+    box-shadow: 0 8px 8px 8px rgba(0,0,0,.2), 0 8px 8px 0 rgba(0,0,0,.14), 0 8px 8px 0 rgba(0,0,0,.12) !important;
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  }
+  .get-card{
+    max-width: 700px;
+    margin: 4px;
+    
+  }
+  .margins{
+    margin-top: 30px;
+    
+  }
+  .mat-card-header{
+    background-color:rgba(244, 234, 248, 0.445) !important;
+    padding:5px !important; 
+  }
+  .scroll{
+    margin-right: 400px;
+    overflow-x : scroll; 
+    height:700px;
+  }
+  .mat-form-field{
+    margin-left: 20px;
   }

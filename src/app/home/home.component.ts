@@ -1,18 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { ArtistInfo } from 'src/models/GetInfo';
 import { Artist, ArtistAttr, Image, TopArtistName, Topartists } from 'src/models/TopArtist';
 import { ArtistService } from '../service/artist.service';
-
+interface Food {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
 export class HomeComponent implements OnInit {
   public topArtist: TopArtistName = new TopArtistName();
   public Artists: Artist[] = [];
-  public Attr : ArtistAttr[] = []; 
-  public img : Image[] = [];
+  public ArtistInfo: ArtistInfo = new ArtistInfo();
+  
   constructor(private artistService: ArtistService,) { }
+  public selectedValue!: string;
+  public selectedCar!: string;
+ public artistname!: String;
+ 
+
 
   ngOnInit(): void {
     this.ArtistDetail();
@@ -23,14 +34,39 @@ export class HomeComponent implements OnInit {
         console.log(data);
         this.topArtist = data;
         this.Artists = this.topArtist.topartists.artist;
-      
+        console.log("attribute");
+        console.log(this.topArtist.topartists['@attr']);
+        // this.topArtist.topartists.artist.
       },
         async (error) => {
           console.log('error', error);
         }
       );
+    
   }
 
 
+  async GetArtistInfo(name: String) {
+    this.artistService.getArtistInfo(name).subscribe
+      (async (data) => {
+        console.log(data);
+        console.log("getArtistInfo()");
+        this.ArtistInfo = data;
+        
+        // this.topArtist.topartists.artist.
+      },
+        async (error) => {
+          console.log('error', error);
+        }
+      );
+    
+  }
+  getArtistImg(img: Image)
+      {
+        return img['#text'];
+      }
+getRank(artist : Artist){
+      return artist['@attr'].rank;
+}
   
 }

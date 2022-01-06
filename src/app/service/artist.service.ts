@@ -13,4 +13,10 @@ export class ArtistService {
   getTopArtist(){
     return this.http.get<any>(`${MusicAppApiPath.TopArtists}`).pipe(map((data) => data));
   }
+  getArtistInfo(artistname : String){
+    return this.http.get<any>(`${MusicAppApiPath.ArtistInfo}${artistname}`).pipe(map((data) => data));
+  }
+  getGeoArtist(artistname : String){
+    return this.http.get<any>(`${MusicAppApiPath.GeoTopArtists}${artistname}`).pipe(map((data) => data));
+  }
 }
