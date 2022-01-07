@@ -1,5 +1,12 @@
 <mat-toolbar color="primary">
     <span>Music Application</span>
+    <mat-form-field appearance="fill">
+       
+        <mat-select [(value)]="selectedCountry" (selectionChange)="ArtistDetail()">
+          <mat-option></mat-option>
+          <mat-option [value]="country.name" *ngFor="let country of Countries">{{ country.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
   </mat-toolbar>
   <div class="margins" >
 <div class="row">
@@ -12,7 +19,7 @@
                     <img [src]="getArtistImg(artist_img)">
                 </div>
                 <mat-card-title class="mat-card-header" >
-                    Rank {{getRank(x)}}:{{x.name}}
+                    {{x.name}}
                 </mat-card-title>
             </mat-card>
         </div>
@@ -21,7 +28,8 @@
    
    
     <div class="col-md-6">
-        <mat-card class="get-card" >
+        <mat-card class="get-card" *ngIf="ArtistInfo.artist.name!=''">
+
             <mat-card-header class="mat-card-header">
                <h1>Artist Info</h1> 
             </mat-card-header>
@@ -29,7 +37,10 @@
             <br/>
         <mat-card-subtitle>Published on : {{ArtistInfo.artist.bio.published}}</mat-card-subtitle>
         <mat-card-subtitle>Listeners :{{ArtistInfo.artist.stats.listeners}}</mat-card-subtitle>
-        <mat-card-content>{{ArtistInfo.artist.bio.summary}}</mat-card-content>
+        <!-- <mat-card-content>{{ArtistInfo.artist.bio.summary}}</mat-card-content> -->
+        <div [innerHTML]="ArtistInfo.artist.bio.summary">
+
+        </div>
     </mat-card>
     </div>
 </div>
