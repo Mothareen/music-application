@@ -1,47 +1,47 @@
 <mat-toolbar color="primary">
     <span>Music Application</span>
     <mat-form-field appearance="fill">
-       
+
         <mat-select [(value)]="selectedCountry" (selectionChange)="ArtistDetail()">
-          <mat-option></mat-option>
-          <mat-option [value]="country.name" *ngFor="let country of Countries">{{ country.name }}</mat-option>
+            <mat-option></mat-option>
+            <mat-option [value]="country.name" *ngFor="let country of Countries">{{ country.name }}</mat-option>
         </mat-select>
-      </mat-form-field>
-  </mat-toolbar>
-  <div class="margins" >
-<div class="row">
-    <div class="col-md-6">
-        <div class="scroll">
-        <div *ngFor="let x of Artists">
-            <mat-card class="mat-card"   (click)=GetArtistInfo(x.name) >
-                <div *ngFor="let artist_img of x.image | slice: 0:1;">
-                    <!-- image deosnt load -->
-                    <img [src]="getArtistImg(artist_img)">
+    </mat-form-field>
+</mat-toolbar>
+<div class="margins">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="scroll">
+                <div *ngFor="let x of Artists">
+                    <mat-card class="mat-card" (click)=GetArtistInfo(x.name)>
+                        <div *ngFor="let artist_img of x.image | slice: 0:1;">
+                            <!-- image deosnt load -->
+                            <img [src]="getArtistImg(artist_img)">
+                        </div>
+                        <mat-card-title class="mat-card-header">
+                            {{x.name}}
+                        </mat-card-title>
+                    </mat-card>
                 </div>
-                <mat-card-title class="mat-card-header" >
-                    {{x.name}}
-                </mat-card-title>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <mat-card class="get-card" *ngIf="ArtistInfo.artist.name!=''">
+
+                <mat-card-header class="mat-card-header">
+                    <h1>Artist Info</h1>
+                </mat-card-header>
+                <mat-card-title>Artist Name : {{ArtistInfo.artist.name}}</mat-card-title>
+                <br />
+                <mat-card-subtitle>Published on : {{ArtistInfo.artist.bio.published}}</mat-card-subtitle>
+                <mat-card-subtitle>Listeners :{{ArtistInfo.artist.stats.listeners}}</mat-card-subtitle>
+                <!-- <mat-card-content>{{ArtistInfo.artist.bio.summary}}</mat-card-content> -->
+                <div [innerHTML]="ArtistInfo.artist.bio.summary">
+
+                </div>
             </mat-card>
         </div>
     </div>
-    </div>
-   
-   
-    <div class="col-md-6">
-        <mat-card class="get-card" *ngIf="ArtistInfo.artist.name!=''">
-
-            <mat-card-header class="mat-card-header">
-               <h1>Artist Info</h1> 
-            </mat-card-header>
-            <mat-card-title>Artist Name : {{ArtistInfo.artist.name}}</mat-card-title>
-            <br/>
-        <mat-card-subtitle>Published on : {{ArtistInfo.artist.bio.published}}</mat-card-subtitle>
-        <mat-card-subtitle>Listeners :{{ArtistInfo.artist.stats.listeners}}</mat-card-subtitle>
-        <!-- <mat-card-content>{{ArtistInfo.artist.bio.summary}}</mat-card-content> -->
-        <div [innerHTML]="ArtistInfo.artist.bio.summary">
-
-        </div>
-    </mat-card>
-    </div>
-</div>
 </div>

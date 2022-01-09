@@ -15,18 +15,15 @@ export class HomeComponent implements OnInit {
   public topArtist: TopArtistName = new TopArtistName();
   public Artists: Artist[] = [];
   public ArtistInfo: ArtistInfo = new ArtistInfo();
-  public selectedCountry : String = "Spain";
-  public Countries: Country[] =[];
+  public selectedCountry: String = "Spain";
+  public Countries: Country[] = [];
 
-  constructor(private artistService: ArtistService,) { 
+  constructor(private artistService: ArtistService,) {
     this.GetCountry();
   }
   public selectedValue!: string;
   public selectedCar!: string;
   public artistname!: String;
- 
-
-
   ngOnInit(): void {
     this.ArtistDetail();
 
@@ -46,46 +43,36 @@ export class HomeComponent implements OnInit {
           console.log('error', error);
         }
       );
-    
-  }
 
+  }
   async GetCountry() {
     this.artistService.getCountry().subscribe
       (async (data) => {
-        
         this.Countries = data;
         console.log(this.Countries);
-        
       },
         async (error) => {
           console.log('error', error);
         }
       );
-    
   }
-
-
   async GetArtistInfo(name: String) {
     this.artistService.getArtistInfo(name).subscribe
       (async (data) => {
         console.log(data);
         console.log("getArtistInfo()");
         this.ArtistInfo = data;
-        
         // this.topArtist.topartists.artist.
       },
         async (error) => {
           console.log('error', error);
         }
       );
-    
   }
-  getArtistImg(img: Image)
-      {
-        return img['#text'];
-      }
-getRank(artist : Artist){
-      return artist['@attr'].rank;
-}
-  
+  getArtistImg(img: Image) {
+    return img['#text'];
+  }
+  getRank(artist: Artist) {
+    return artist['@attr'].rank;
+  }
 }
